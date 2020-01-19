@@ -1,16 +1,9 @@
-const jokeEl = document.getElementById("joke");
-const get_joke = document.getElementById("get_joke");
+const password = document.getElementById("password");
+const background = document.getElementById("background");
 
-get_joke.addEventListener("click", generateJoke);
-
-generateJoke();
-
-async function generateJoke() {
-  const jokeRes = await fetch("https://icanhazdadjoke.com/", {
-    headers: {
-      Accept: "application/json"
-    }
-  });
-  const joke = await jokeRes.json();
-  jokeEl.innerHTML = joke.joke;
-}
+password.addEventListener("input", e => {
+  const input = e.target.value;
+  const length = input.length;
+  const blurValue = 20 - length * 2;
+  background.style.filter = `blur(${blurValue}px)`;
+});
