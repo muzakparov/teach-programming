@@ -1,9 +1,19 @@
-const password = document.getElementById("password");
-const background = document.getElementById("background");
+const text = document.getElementById("text");
+const textArr = text.innerText.split("");
 
-password.addEventListener("input", e => {
-  const input = e.target.value;
-  const length = input.length;
-  const blurValue = 20 - length * 2;
-  background.style.filter = `blur(${blurValue}px)`;
-});
+const newEl = document.createElement("h1");
+newEl.innerHTML = `
+	${textArr
+    .map(
+      letter =>
+        `<span class="letter" style="${randomVisibility()}">${letter}</span>`
+    )
+    .join("")}
+`;
+newEl.classList.add("overlay");
+
+document.body.appendChild(newEl);
+
+function randomVisibility() {
+  return Math.random() < 0.5 ? "visibility: hidden" : "visibility: visible";
+}

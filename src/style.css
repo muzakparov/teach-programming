@@ -1,29 +1,48 @@
-@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Muli400,700&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
 body {
+  background-color: #75bce6;
   font-family: "Muli", sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
-  margin: 0;
   overflow: hidden;
 }
 
-.background {
-  background-image: url("https://images.unsplash.com/photo-1556745757-8d76bdb6984b");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+h1 {
+  font-size: 10vw;
+  font-weight: bold;
+  margin: 0;
   position: absolute;
-  top: -20px;
-  left: -20px;
-  bottom: -20px;
-  right: -20px;
-  filter: blur(20px);
-  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
+  width: 100%;
+}
+
+.overlay {
+  z-index: 2;
+}
+
+.line {
+  background-color: #fff;
+  border-radius: 50px;
+  position: absolute;
+  top: 50%;
+  left: -1vw;
+  transform: translateY(-50%);
+  height: 2vw;
+  width: 0;
+  animation: grow 3s linear forwards;
+  z-index: 2;
+}
+
+@keyframes grow {
+  to {
+    width: 102vw;
+  }
 }
