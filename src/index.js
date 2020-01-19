@@ -1,19 +1,24 @@
-const text = document.getElementById("text");
-const textArr = text.innerText.split("");
+const counters = document.querySelectorAll(".counter");
 
-const newEl = document.createElement("h1");
-newEl.innerHTML = `
-	${textArr
-    .map(
-      letter =>
-        `<span class="letter" style="${randomVisibility()}">${letter}</span>`
-    )
-    .join("")}
-`;
-newEl.classList.add("overlay");
+// this could work for multiple counters
+counters.forEach(counter => {
+  // start with 0 by default
+  counter.innerText = "0";
 
-document.body.appendChild(newEl);
+  const updateCounter = () => {
+    const target = +counter.getAttribute("data-target");
+    const c = +counter.innerText;
 
-function randomVisibility() {
-  return Math.random() < 0.5 ? "visibility: hidden" : "visibility: visible";
-}
+    // get the 0.1% to speed up things
+    const increment = target / 1000;
+
+    if (c < target) {
+      counter.innerText = `${Math.ceil(c + increment)}`;
+      setTimeout(updateCounter, 1);
+    } else {
+      counter.innerText = target;
+    }
+  };
+
+  updateCounter();
+});
